@@ -1,0 +1,409 @@
+%% abtex2-modelo-trabalho-academico.tex, v-1.9.2 laurocesar
+%% Copyright 2012-2014 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro César Araujo. Further information are available on 
+%% http://abntex2.googlecode.com/
+%%
+%% This work consists of the files abntex2-modelo-trabalho-academico.tex,
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+% mestrado e trabalhos monograficos em geral) em conformidade com 
+% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+% Apresentacao
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------
+% Modelo adaptado especificamente para o contexto do PPgSI-EACH-USP por 
+% Marcelo Fantinato, com auxílio dos Professores Norton T. Roman, Helton
+% H. Bíscaro e Sarajane M. Peres, em 2015, com muitos agradecimentos aos 
+% criadores da classe e do modelo base.
+%
+% 20/06/2017: inclusão de "lista de quadros" com base no especificado em:
+% https://github.com/abntex/abntex2/wiki/HowToCriarNovoAmbienteListing,
+% de autoria de "Eduardo de Santana Medeiros Alexandre".
+%
+%-------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	% openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão apenas no anverso (apenas frente). Oposto a twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	%french,				% idioma adicional para hifenização
+	%spanish,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{abntex2unama}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{pdfpages}     %para incluir pdf
+\usepackage{algorithm}			%para ilustrações do tipo algoritmo
+\usepackage{mdwlist}			%para itens com espaço padrão da abnt
+\usepackage[noend]{algpseudocode}			%para ilustrações do tipo algoritmo
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage{hyperref}
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf,abnt-etal-list=0,abnt-etal-text=it]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``instituicao'':
+%
+% Não mexer. Deixar exatamente como está.
+%
+%-------------------------------------------------------------------------
+\instituicao{
+	UNIVERSIDADE DA AMAZÔNIA
+	\par
+	CURSO DE BACHARELADO EM CIÊNCIA DA COMPUTAÇÃO
+	\par
+	DISCIPLINA DE QUALIDADE  DE SOFTWARE
+	}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``título'':
+%
+% Em maiúscula apenas a primeira letra da sentença (do título), exceto 
+% nomes próprios, geográficos, institucionais ou Programas ou Projetos ou 
+% siglas, os quais podem ter letras em maiúscula também.
+%
+% O subtítulo do trabalho é opcional.
+% Sem ponto final.
+%
+% Atenção: o título da Dissertação/Tese na versão corrigida não pode mudar. 
+% Ele deve ser idêntico ao da versão original.
+%
+%-------------------------------------------------------------------------
+\titulo{PMBOK e o Fator Tempo: Uma Análise de Projetos de Desenvolvimento de Software}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``autor'':
+%
+% Todas as letras em maiúsculas.
+% Nome completo.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\autor{\uppercase{Daniel Bahia Pinheiro Calliari\\Maria Luisa Lameirão Sousa\\Marcus Felipe Barradas Andrade}}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``local'':
+%
+% Não incluir o ``estado''.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\local{Belém}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre a ``data'':
+%
+% Colocar o ano do depósito (ou seja, o ano da entrega) da respectiva 
+% versão, seja ela a versão original (para a defesa) seja ela a versão 
+% corrigida (depois da aprovação na defesa). 
+%
+% Atenção: Se a versão original for depositada no final do ano e a versão 
+% corrigida for entregue no ano seguinte, o ano precisa ser atualizado no 
+% caso da versão corrigida. 
+% Cuidado, pois o ano da ``capa externa'' também precisa ser atualizado 
+% nesse caso.
+%
+% Não incluir o dia, nem o mês.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\data{2024}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``Orientador'':
+%
+% Se for uma professora, trocar por ``Profa. Dra.''
+% Nome completo.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\orientador{Prof. Dr. Fulano de Tal}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``Coorientador'':
+%
+% Opcional. Incluir apenas se houver co-orientador formal, de acordo com o 
+% Regulamento do Programa.
+%
+% Se for uma professora, trocar por ``Profa. Dra.''
+% Nome completo.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\coorientador{Prof. Dr. Fulano de Tal}
+
+\tipotrabalho{Dissertação (Mestrado) / Tese (Doutorado)}
+
+\preambulo{
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o texto ``Versão 
+% original'':
+%
+% Não usar para Qualificação.
+% Não usar para versão corrigida de Dissertação/Tese.
+%
+%-------------------------------------------------------------------------
+Versão original \newline \newline \newline 
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``texto principal do
+% preambulo'':
+%
+% Para Doutorado, trocar por: Tese apresentada à Escola de Artes, Ciências e Humanidades da Universidade de São Paulo para obtenção do título de Doutor (ou Doutora) em Ciências pelo Programa de Pós-graduação em Sistemas de Informação. 
+%
+% Para Qualificação, trocar por: Projeto de pesquisa para exame de qualificação apresentado à Escola de Artes, Ciências e Humanidades da Universidade de São Paulo como parte dos requisitos para obtenção do título de Mestre (ou Doutor ou Doutora) em Ciências pelo Programa de Pós-graduação em Sistemas de Informação.
+%
+%-------------------------------------------------------------------------
+Trabalho acadêmico apresentado à Universidade da Amazônia como parte de disciplinas do Curso de Bacharelado em Ciência da Computação.
+%
+\newline \newline Área de concentração: Qualidade de Software
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o texto da ``Versão 
+% corrigida'':
+%
+% Não usar para Qualificação.
+% Não usar para versão original de Dissertação/Tese.
+% 
+% Substituir ``xx de xxxxxxxxxxxxxxx de xxxx'' pela ``data da defesa''.
+%
+%-------------------------------------------------------------------------
+% \newline \newline \newline Versão corrigida contendo as alterações solicitadas pela comissão julgadora em xx de xxxxxxxxxxxxxxx de xxxx. A versão original encontra-se em acervo reservado na Biblioteca da EACH-USP e na Biblioteca Digital de Teses e Dissertações da USP (BDTD), de acordo com a Resolução CoPGr 6018, de 13 de outubro de 2011.
+}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={laTeX com abnTeX2 adaptado para a UNAMA/ALC},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2unama}{trabalho acadêmico}{unama}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.25cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0cm}  % tente também \onelineskip
+\renewcommand{\baselinestretch}{1.5}
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+	% Controlar linhas orfas e viuvas
+  \clubpenalty10000
+  \widowpenalty10000
+  \displaywidowpenalty10000
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre a ``capa'':
+%
+% Esta é a ``capa'' principal/oficial do trabalho, a ser impressa apenas 
+% para os casos de encadernação simples (ou seja, em ``espiral'' com 
+% plástico na frente).
+% 
+% Não imprimir esta ``capa'' quando houver ``capa dura'' ou ``capa brochura'' 
+% em que estas mesmas informações já estão presentes nela.
+%
+%-------------------------------------------------------------------------
+\imprimircapa
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``títulos de seções''
+% 
+% Para todos os títulos (seções, subseções, tabelas, ilustrações, etc.):
+%
+% Em maiúscula apenas a primeira letra da sentença (do título), exceto 
+% nomes próprios, geográficos, institucionais ou Programas ou Projetos ou
+% siglas, os quais podem ter letras em maiúscula também.
+%
+%-------------------------------------------------------------------------
+\chapter{Introdução}
+
+No campo da gestão de projetos, o Project Management Body of Knowledge (PMBOK) serve como uma estrutura fundamental que descreve processos essenciais para a execução bem-sucedida de projetos. Esta revisão crítica explora a interseção entre os princípios do PMBOK e o fator tempo, particularmente no contexto de projetos de desenvolvimento de software. A importância do gerenciamento do cronograma na execução de projetos impacta diretamente a qualidade, o custo e o sucesso geral do projeto.
+
+O guia PMBOK delineia cinco processos principais: iniciação, planejamento, execução, controle e encerramento, fundamentais para todos os projetos, incluindo o desenvolvimento de software \cite{Marcelino_Analysis_2022}. Esses processos garantem que os projetos sejam concluídos de forma eficiente e eficaz, alinhando-se às expectativas das partes interessadas. No entanto, o desafio surge quando os cronogramas se estendem além do aceitável pelos clientes, levando à necessidade de medidas drásticas, como a eliminação de atividades ou a redução do escopo do projeto \cite{Ghasemabadi_PMBOK_2011}.
+
+No desenvolvimento de software, onde mudanças rápidas e requisitos em evolução são comuns, aderir estritamente às diretrizes do PMBOK pode conflitar com a necessidade de agilidade e flexibilidade. Técnicas tradicionais de planejamento de projetos, como o Método do Caminho Crítico (CPM) e a Técnica de Avaliação e Revisão de Programas (PERT), foram fundamentais na gestão de projetos desde os anos 1950 \cite{Ghasemabadi_PMBOK_2011}. No entanto, esses métodos nem sempre acomodam a natureza dinâmica dos projetos de software, onde as restrições de tempo são críticas e podem acarretar implicações significativas de custo, se não forem gerenciadas adequadamente.
+
+Esta revisão analisará como a estrutura do PMBOK pode ser adaptada para abordar melhor o fator tempo em projetos de desenvolvimento de software. Ao examinar estudos de caso e a literatura existente, identificaremos as melhores práticas e desafios na aplicação dos princípios do PMBOK, focando em estratégias de otimização de tempo que não comprometam a qualidade ou o escopo do projeto. Esta análise visa contribuir para uma compreensão mais profunda de como as metodologias de gestão de projetos podem evoluir para atender às demandas do desenvolvimento de software em um ambiente acelerado.
+
+
+\chapter{Gerenciamento do Cronograma no PMBOK}
+
+O gerenciamento do cronograma é um dos aspectos mais críticos de qualquer projeto, pois afeta diretamente a qualidade, o custo e o sucesso geral do projeto. O PMBOK define o gerenciamento do cronograma como o processo de planejamento, execução e controle das atividades do projeto para garantir que ele seja concluído dentro do prazo especificado. O guia PMBOK delineia seis processos principais para o gerenciamento do cronograma: definição de atividades, sequenciamento de atividades, estimativa de recursos de atividades, estimativa de duração de atividades, desenvolvimento de cronograma e controle de cronograma \cite{Project_Management_Institute_PMBOK_2017}.
+
+O processo de definição de atividades envolve a identificação e documentação das atividades específicas que devem ser realizadas para atingir os objetivos do projeto. O sequenciamento de atividades envolve a determinação da ordem em que as atividades devem ser executadas, levando em consideração as dependências entre elas. A estimativa de recursos de atividades envolve a identificação e alocação dos recursos necessários para a execução das atividades do projeto. A estimativa de duração de atividades envolve a avaliação do tempo necessário para concluir cada atividade, com base nos recursos disponíveis e nas restrições do projeto \cite{Project_Management_Institute_PMBOK_2017}.
+
+O desenvolvimento de cronograma envolve a criação de um cronograma detalhado que mostra a sequência e a duração de cada atividade, bem como as datas de início e término do projeto. O controle de cronograma envolve o monitoramento contínuo do progresso do projeto em relação ao cronograma planejado e a implementação de medidas corretivas para garantir que o projeto seja concluído dentro do prazo especificado. Em última análise, o gerenciamento do cronograma no PMBOK é projetado para garantir que os projetos sejam concluídos de forma eficiente e eficaz, alinhando-se às expectativas das partes interessadas.
+
+\chapter{Impacto do Gerenciamento do Cronograma na Qualidade do Processo e Produto de Software}
+
+O gerenciamento do cronograma é crucial para a qualidade do processo e do produto de software. Um cronograma bem gerido assegura a conclusão do projeto dentro do prazo e do orçamento, evitando custos adicionais e retrabalho. Isso resulta em um produto de alta qualidade que atende às expectativas dos clientes \cite{Ghasemabadi_PMBOK_2011}\cite{Gonçalves_Pereira_2012}.
+
+O impacto do gerenciamento do cronograma sobre a qualidade do processo de software é vasto. Um cronograma bem planejado e executado garante que as atividades do projeto sejam realizadas de forma eficiente, reduzindo o risco de atrasos e interrupções.Além disso, um cronograma claro e viável garante que os recursos essenciais sejam disponibilizados no momento adequado, prevenindo sobrecargas e atrasos consideráveis na realização do projeto \cite{Gonçalves_Pereira_2012}. De acordo com Sepasgozar et al. (2019), atrasos em projetos resultam em impactos diretos tanto no cronograma quanto nos custos, o que reforça a importância de um gerenciamento proativo \cite{Sepasgozar_Delay_2019}.
+
+Em relação à qualidade do produto de software, o gerenciamento adequado do cronograma assegura que o produto seja entregue conforme os prazos e orçamentos estabelecidos, alinhando-se às expectativas do cliente. Além disso, um cronograma bem estruturado contribui para garantir que o produto atenda aos requisitos de qualidade e funcionalidade especificados, minimizando o risco de erros e defeitos \cite{Sepasgozar_Delay_2019}. Como afirmado por Gonçalves e Pereira (2012), a adoção de práticas maduras de planejamento de tempo e controle de cronograma está diretamente associada à melhoria da qualidade do software produzido \cite{Gonçalves_Pereira_2012}.
+
+Em suma, o gerenciamento do cronograma desempenha um papel crítico na qualidade tanto do processo quanto do produto de software. Um cronograma bem planejado e executado não só garante a conclusão do projeto dentro do prazo e do orçamento, mas também assegura que o produto entregue atenda às necessidades do cliente final, resultando em um software de alta qualidade \cite{Ghasemabadi_PMBOK_2011} \cite{Sepasgozar_Delay_2019}.
+
+\chapter{Conclusão}
+
+O gerenciamento do cronograma é um aspecto crítico de qualquer projeto, incluindo o desenvolvimento de software. O PMBOK fornece uma estrutura abrangente para o gerenciamento do cronograma, delineando processos essenciais para a execução bem-sucedida de projetos. No entanto, a natureza dinâmica e acelerada do desenvolvimento de software apresenta desafios únicos para o gerenciamento do cronograma, que nem sempre são adequadamente abordados pelas práticas tradicionais de planejamento de projetos.
+
+Esta revisão crítica explorou a interseção entre os princípios do PMBOK e o fator tempo, particularmente no contexto de projetos de desenvolvimento de software. Identificamos a importância do gerenciamento do cronograma na qualidade, no custo e no sucesso geral do projeto, bem como o impacto do gerenciamento do cronograma na qualidade do processo e do produto de software. Concluímos que um cronograma bem planejado e executado é fundamental para garantir a conclusão do projeto dentro do prazo e do orçamento, evitando custos adicionais e retrabalho.
+
+No entanto, a natureza dinâmica e acelerada do desenvolvimento de software apresenta desafios únicos para o gerenciamento do cronograma, que nem sempre são adequadamente abordados pelas práticas tradicionais de planejamento de projetos. A necessidade de agilidade e flexibilidade no desenvolvimento de software muitas vezes entra em conflito com as diretrizes do PMBOK, que podem ser excessivamente prescritivas e inflexíveis para atender às demandas do desenvolvimento de software em um ambiente acelerado.
+
+Como tal, a adaptação da estrutura do PMBOK para abordar melhor o fator tempo em projetos de desenvolvimento de software é essencial para garantir a qualidade, o custo e o sucesso geral do projeto. Ao examinar estudos de caso e a literatura existente, identificamos as melhores práticas e desafios na aplicação dos princípios do PMBOK, focando em estratégias de otimização de tempo que não comprometam a qualidade ou o escopo do projeto. Esta análise visa contribuir para uma compreensão mais profunda de como as metodologias de gestão de projetos podem evoluir para atender às demandas do desenvolvimento de software em um ambiente acelerado.
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{referencias}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+%%%%%MF\phantompart
+%%%%%MF\printindex
+%---------------------------------------------------------------------
+
+\end{document}

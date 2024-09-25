@@ -1,0 +1,39 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[Ghasemabadi, Ashtiani e Mohammadipour 2011]{Ghasemabadi_PMBOK_2011}
+\abntrefinfo{Ghasemabadi, Ashtiani e Mohammadipour}{GHASEMABADI; ASHTIANI;
+  MOHAMMADIPOUR}{2011}
+{GHASEMABADI, M. A.; ASHTIANI, M. G.; MOHAMMADIPOUR, F. Pmbok five process plan
+  for isms project implementation considering cost optimization for a time
+  constraint: A case study. In:  . [S.l.]: IEEE, 2011. p. 788–791.}
+
+\bibitem[GonÇalves e Pereira 2012]{Gonçalves_Pereira_2012}
+\abntrefinfo{GonÇalves e Pereira}{GONÇALVES; PEREIRA}{2012}
+{GONÇALVES, R.~Q.; PEREIRA, A.~M. Supporting time planning aligned with
+  cmmi-dev and pmbok.
+2012.}
+
+\bibitem[Institute 2017]{Project_Management_Institute_PMBOK_2017}
+\abntrefinfo{Institute}{INSTITUTE}{2017}
+{INSTITUTE, P.~M. \emph{A Guide to the Project Management Body of Knowledge
+  (PMBOK® Guide)}. 6th. ed. [S.l.]: Project Management Institute, 2017.}
+
+\bibitem[Marcelino e Domingues 2022]{Marcelino_Analysis_2022}
+\abntrefinfo{Marcelino e Domingues}{MARCELINO; DOMINGUES}{2022}
+{MARCELINO, E.; DOMINGUES, L. An analysis of how well serious games cover the
+  pmbok.
+\emph{Procedia Computer Science}, v.~196, p. 1013–1020, 2022.}
+
+\bibitem[Sepasgozar \textit{et al.} 2019]{Sepasgozar_Delay_2019}
+\abntrefinfo{Sepasgozar \textit{et al.}}{SEPASGOZAR \textit{et al.}}{2019}
+{SEPASGOZAR, S. M.~E.; KARIMI, R.; SHIROWZHAN, S.; MOJTAHEDI, M.; EBRAHIMZADEH,
+  S.; MCCARTHY, D. Delay causes and emerging digital tools: A novel model of
+  delay analysis, including integrated project delivery and pmbok.
+\emph{Buildings}, v.~9, n.~9, p.~191, 2019.}
+
+\end{thebibliography}
