@@ -1,0 +1,432 @@
+%% abtex2-modelo-trabalho-academico.tex, v-1.9.2 laurocesar
+%% Copyright 2012-2014 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro César Araujo. Further information are available on 
+%% http://abntex2.googlecode.com/
+%%
+%% This work consists of the files abntex2-modelo-trabalho-academico.tex,
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+% mestrado e trabalhos monograficos em geral) em conformidade com 
+% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+% Apresentacao
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------
+% Modelo adaptado especificamente para o contexto do PPgSI-EACH-USP por 
+% Marcelo Fantinato, com auxílio dos Professores Norton T. Roman, Helton
+% H. Bíscaro e Sarajane M. Peres, em 2015, com muitos agradecimentos aos 
+% criadores da classe e do modelo base.
+%
+% 20/06/2017: inclusão de "lista de quadros" com base no especificado em:
+% https://github.com/abntex/abntex2/wiki/HowToCriarNovoAmbienteListing,
+% de autoria de "Eduardo de Santana Medeiros Alexandre".
+%
+%-------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	% openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão apenas no anverso (apenas frente). Oposto a twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	%french,				% idioma adicional para hifenização
+	%spanish,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{abntex2unama}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{pdfpages}     %para incluir pdf
+\usepackage{algorithm}			%para ilustrações do tipo algoritmo
+\usepackage{mdwlist}			%para itens com espaço padrão da abnt
+\usepackage[noend]{algpseudocode}			%para ilustrações do tipo algoritmo
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage{hyperref}
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf,abnt-etal-list=0,abnt-etal-text=it]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``instituicao'':
+%
+% Não mexer. Deixar exatamente como está.
+%
+%-------------------------------------------------------------------------
+\instituicao{
+	UNIVERSIDADE DA AMAZÔNIA
+	\par
+	CURSO DE BACHARELADO EM CIÊNCIA DA COMPUTAÇÃO
+	\par
+	DISCIPLINA DE QUALIDADE  DE SOFTWARE
+	}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``título'':
+%
+% Em maiúscula apenas a primeira letra da sentença (do título), exceto 
+% nomes próprios, geográficos, institucionais ou Programas ou Projetos ou 
+% siglas, os quais podem ter letras em maiúscula também.
+%
+% O subtítulo do trabalho é opcional.
+% Sem ponto final.
+%
+% Atenção: o título da Dissertação/Tese na versão corrigida não pode mudar. 
+% Ele deve ser idêntico ao da versão original.
+%
+%-------------------------------------------------------------------------
+\titulo{Plano para Alcançar o Nível G do MPS.BR: Estratégias e desafios para a implementação do MPS-SW}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``autor'':
+%
+% Todas as letras em maiúsculas.
+% Nome completo.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\autor{\uppercase{Daniel Bahia Pinheiro Calliari\\Maria Luisa Lameirão Sousa\\Marcus Felipe Barradas Andrade}}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``local'':
+%
+% Não incluir o ``estado''.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\local{Belém}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre a ``data'':
+%
+% Colocar o ano do depósito (ou seja, o ano da entrega) da respectiva 
+% versão, seja ela a versão original (para a defesa) seja ela a versão 
+% corrigida (depois da aprovação na defesa). 
+%
+% Atenção: Se a versão original for depositada no final do ano e a versão 
+% corrigida for entregue no ano seguinte, o ano precisa ser atualizado no 
+% caso da versão corrigida. 
+% Cuidado, pois o ano da ``capa externa'' também precisa ser atualizado 
+% nesse caso.
+%
+% Não incluir o dia, nem o mês.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\data{2024}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``Orientador'':
+%
+% Se for uma professora, trocar por ``Profa. Dra.''
+% Nome completo.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\orientador{Prof. Dr. Fulano de Tal}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``Coorientador'':
+%
+% Opcional. Incluir apenas se houver co-orientador formal, de acordo com o 
+% Regulamento do Programa.
+%
+% Se for uma professora, trocar por ``Profa. Dra.''
+% Nome completo.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\coorientador{Prof. Dr. Fulano de Tal}
+
+\tipotrabalho{Dissertação (Mestrado) / Tese (Doutorado)}
+
+\preambulo{
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o texto ``Versão 
+% original'':
+%
+% Não usar para Qualificação.
+% Não usar para versão corrigida de Dissertação/Tese.
+%
+%-------------------------------------------------------------------------
+Versão original \newline \newline \newline 
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``texto principal do
+% preambulo'':
+%
+% Para Doutorado, trocar por: Tese apresentada à Escola de Artes, Ciências e Humanidades da Universidade de São Paulo para obtenção do título de Doutor (ou Doutora) em Ciências pelo Programa de Pós-graduação em Sistemas de Informação. 
+%
+% Para Qualificação, trocar por: Projeto de pesquisa para exame de qualificação apresentado à Escola de Artes, Ciências e Humanidades da Universidade de São Paulo como parte dos requisitos para obtenção do título de Mestre (ou Doutor ou Doutora) em Ciências pelo Programa de Pós-graduação em Sistemas de Informação.
+%
+%-------------------------------------------------------------------------
+Trabalho acadêmico apresentado à Universidade da Amazônia como parte de disciplinas do Curso de Bacharelado em Ciência da Computação.
+%
+\newline \newline Área de concentração: Qualidade de Software
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o texto da ``Versão 
+% corrigida'':
+%
+% Não usar para Qualificação.
+% Não usar para versão original de Dissertação/Tese.
+% 
+% Substituir ``xx de xxxxxxxxxxxxxxx de xxxx'' pela ``data da defesa''.
+%
+%-------------------------------------------------------------------------
+% \newline \newline \newline Versão corrigida contendo as alterações solicitadas pela comissão julgadora em xx de xxxxxxxxxxxxxxx de xxxx. A versão original encontra-se em acervo reservado na Biblioteca da EACH-USP e na Biblioteca Digital de Teses e Dissertações da USP (BDTD), de acordo com a Resolução CoPGr 6018, de 13 de outubro de 2011.
+}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={laTeX com abnTeX2 adaptado para a UNAMA/ALC},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2unama}{trabalho acadêmico}{unama}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.25cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0cm}  % tente também \onelineskip
+\renewcommand{\baselinestretch}{1.5}
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+	% Controlar linhas orfas e viuvas
+  \clubpenalty10000
+  \widowpenalty10000
+  \displaywidowpenalty10000
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre a ``capa'':
+%
+% Esta é a ``capa'' principal/oficial do trabalho, a ser impressa apenas 
+% para os casos de encadernação simples (ou seja, em ``espiral'' com 
+% plástico na frente).
+% 
+% Não imprimir esta ``capa'' quando houver ``capa dura'' ou ``capa brochura'' 
+% em que estas mesmas informações já estão presentes nela.
+%
+%-------------------------------------------------------------------------
+\imprimircapa
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``títulos de seções''
+% 
+% Para todos os títulos (seções, subseções, tabelas, ilustrações, etc.):
+%
+% Em maiúscula apenas a primeira letra da sentença (do título), exceto 
+% nomes próprios, geográficos, institucionais ou Programas ou Projetos ou
+% siglas, os quais podem ter letras em maiúscula também.
+%
+%-------------------------------------------------------------------------
+\chapter{Introdução}
+O Modelo de Melhoria de Processo do Software Brasileiro (MPS.Br) é uma iniciativa que visa aprimorar os processos de desenvolvimento de software nas empresas \cite{mpsbr}. Ele foi desenvolvido para atender à realidade das organizações brasileiras, oferecendo uma alternativa acessível e eficaz para alcançar a excelência em processos de software. Composto por níveis de maturidade, o modelo fornece um guia progressivo para melhorar a qualidade dos processos e produtos de software. Cada nível apresenta requisitos específicos, permitindo que as empresas melhorem gradualmente seus processos de forma sustentável.
+
+O MPS.Br é particularmente relevante para empresas que buscam maior competitividade no mercado, pois a qualidade dos processos de software tem um impacto direto na entrega de produtos eficientes e confiáveis \cite{mpsbr_benefits}. A implementação desse modelo exige comprometimento organizacional, pois implica em mudanças culturais e estruturais. Apesar disso, os benefícios superam os desafios, como a padronização de processos, aumento de produtividade e satisfação dos clientes.
+
+Neste contexto, este trabalho propõe um plano para alcançar o Nível G do MPS.Br, que representa um estágio inicial de maturidade nos processos de software. O objetivo é apresentar estratégias e desafios para a implementação do MPS-SW, focando nos processos de Gerência de Projetos e Gerência de Requisitos. Esses processos são essenciais para estabelecer uma base sólida de controle e previsibilidade no desenvolvimento de software, contribuindo para a melhoria contínua da qualidade e eficiência organizacional.
+
+\chapter{Contexto do MPS.Br}
+O MPS.Br é um modelo de referência para a melhoria de processos de software, baseado nas normas ISO/IEC 12207 e ISO/IEC 15504. Ele foi desenvolvido por um consórcio de instituições brasileiras, com o apoio do governo e da indústria de software. O modelo é composto por sete níveis de maturidade, que representam estágios evolutivos nos processos de software. Cada nível possui requisitos específicos, que devem ser atendidos para alcançar a maturidade desejada. \cite{iso12207, iso15504}
+
+O MPS.Br é uma alternativa flexível e adaptável, que pode ser aplicada a organizações de diferentes portes e segmentos. Ele oferece um roteiro claro para a melhoria contínua dos processos, permitindo que as empresas identifiquem suas necessidades e prioridades. O modelo também fornece um conjunto de práticas e diretrizes, que orientam as organizações na implementação de processos eficazes e eficientes \cite{mpsbr_guide}.
+
+A adoção do MPS.Br traz diversos benefícios para as organizações, como a redução de custos, o aumento da produtividade e a melhoria da qualidade dos produtos de software \cite{mpsbr_benefits}. Além disso, o modelo contribui para a padronização e a documentação dos processos, facilitando a comunicação e o compartilhamento de conhecimento. Com essas vantagens, o MPS.Br se tornou uma referência importante para as empresas que buscam a excelência em processos de software.
+
+\chapter{Objetivo do Nível G}
+O Nível G do MPS.Br tem como principal objetivo alcançar processos parcialmente gerenciados. Esse estágio inicial de maturidade foca na organização e no controle básico dos processos de software. Os dois principais processos tratados neste nível são a Gerência de Projetos e a Gerência de Requisitos \cite{mpsbr_levelG}. A Gerência de Projetos busca estabelecer práticas consistentes para planejar, executar e monitorar projetos, garantindo o cumprimento de prazos e metas estabelecidas. Já a Gerência de Requisitos concentra-se em identificar, documentar e gerenciar os requisitos do software, assegurando que eles sejam compreendidos e atendidos.
+
+Esses processos são fundamentais para estabelecer uma base sólida de controle e previsibilidade no desenvolvimento de software. O Nível G não requer a total maturidade de todos os processos, mas incentiva que eles sejam documentados, aplicados de forma consistente e sujeitos a melhorias contínuas. Essa abordagem inicial é essencial para criar um ambiente propício à implementação dos níveis mais avançados do MPS.Br.
+
+\chapter{Requisitos do Nível G}
+
+O Nível G do MPS.Br possui requisitos específicos para a Gerência de Projetos e a Gerência de Requisitos. Para a Gerência de Projetos, os principais requisitos são \cite{mpsbr_requirements}:
+
+\begin{itemize}
+	\item Estabelecer um Plano de Gerência de Projetos (PGP), que defina o escopo, os recursos, os riscos e o cronograma do projeto.
+	\item Realizar reuniões de acompanhamento periódicas, para monitorar o progresso do projeto e identificar desvios em relação ao planejado.
+	\item Estabelecer métricas de desempenho, para avaliar a qualidade e a eficiência dos processos de gerência de projetos.
+	\item Documentar lições aprendidas, para registrar as experiências e os resultados obtidos ao longo do projeto.
+	\item Realizar avaliações pós-projeto, para identificar pontos fortes e áreas de melhoria nos processos de gerência de projetos.
+	\item Estabelecer um Plano de Gerência de Requisitos (PGR), que defina a identificação, análise e rastreabilidade dos requisitos do software.
+	\item Realizar revisões de requisitos, para validar a compreensão e a adequação dos requisitos do software.
+	\item Estabelecer um processo de controle de mudanças, para gerenciar as alterações nos requisitos do software ao longo do ciclo de vida do projeto.
+\end{itemize}
+
+Esses requisitos são essenciais para garantir que os processos de Gerência de Projetos e Gerência de Requisitos sejam aplicados de forma consistente e eficaz. Eles fornecem uma base sólida para a implementação do Nível G do MPS.Br, contribuindo para a melhoria contínua dos processos de software.
+
+\chapter{Desafios para Implementação}
+A implementação do MPS.Br, especialmente no Nível G, enfrenta diversos desafios. Um dos mais frequentes é a resistência à mudança. Funcionários e gestores podem se sentir desconfortáveis ao abandonar métodos e práticas consolidados, mesmo que sejam ineficientes \cite{change_management}. Essa resistência pode ser minimizada com uma comunicação eficaz, que demonstre os benefícios da mudança e envolva todos os níveis da organização no processo de transformação.
+
+Outro desafio importante é a falta de conhecimento sobre o modelo. Muitas organizações precisam capacitar suas equipes para compreender os requisitos do MPS.Br e sua aplicabilidade no dia a dia. A integração dos novos processos aos já existentes também pode ser complexa, pois requer um alinhamento cuidadoso para evitar conflitos. Além disso, a alocação de recursos, tanto financeiros quanto humanos, é um ponto crítico. A falta de planejamento adequado pode gerar atrasos e aumento de custos, impactando negativamente o cronograma da implementação \cite{resource_allocation}.
+
+Por fim, a falta de comprometimento da alta direção é um desafio significativo. Sem o apoio e o engajamento dos líderes da organização, a implementação do MPS.Br pode ser vista como uma iniciativa isolada, sem impacto real nos processos de software. É fundamental que a alta direção esteja envolvida desde o início, demonstrando seu compromisso com a melhoria contínua e a excelência operacional \cite{leadership_commitment}.
+
+\chapter{Estratégias de Implementação}
+Para superar os desafios da implementação do Nível G, é essencial adotar estratégias bem definidas. O treinamento e a capacitação da equipe são passos fundamentais. Workshops e cursos específicos sobre o MPS-SW ajudam a disseminar o conhecimento necessário, enquanto treinamentos em Gerência de Projetos e Requisitos garantem que os processos essenciais sejam compreendidos e aplicados de forma eficaz \cite{training}.
+
+Outra estratégia é engajar a equipe em todos os níveis hierárquicos. A comunicação clara dos benefícios do MPS.Br, como a melhoria na qualidade e na eficiência dos processos, ajuda a conquistar o apoio e o comprometimento dos colaboradores. O planejamento e o monitoramento contínuo também são cruciais. Estabelecer metas claras, prazos realistas e realizar avaliações periódicas do progresso garantem que o projeto de implementação esteja alinhado aos objetivos organizacionais \cite{strategic_planning}.
+
+O uso de ferramentas e métodos adequados é outra estratégia importante. Softwares de gerenciamento de projetos, como o Microsoft Project e o Trello, facilitam o planejamento e o acompanhamento das atividades. Métodos ágeis, como Scrum e Kanban, podem ser adotados para promover a colaboração e a flexibilidade nos processos de desenvolvimento de software \cite{agile_methods}. A combinação dessas estratégias contribui para o sucesso da implementação do Nível G do MPS.Br.
+
+\chapter{Documentação Necessária}
+A documentação desempenha um papel crítico na implementação do Nível G do MPS.Br. O Plano de Gerência de Projetos (PGP) é um dos documentos essenciais, pois detalha o escopo, os recursos, os riscos e o cronograma do projeto. Ele serve como guia para todas as atividades de gerenciamento, garantindo que o projeto seja conduzido de maneira organizada e eficiente \cite{pgp}.
+
+Outro documento fundamental é o Plano de Gerência de Requisitos (PGR). Este plano abrange a identificação, análise e rastreabilidade dos requisitos do projeto, assegurando que as necessidades dos stakeholders sejam compreendidas e atendidas. Relatórios de acompanhamento, que fornecem métricas de desempenho e status dos projetos, também são indispensáveis para monitorar o progresso. Além disso, políticas internas e documentação de treinamento ajudam a padronizar os processos e a alinhar as expectativas da equipe \cite{pgr}.
+
+A documentação deve ser clara, concisa e acessível a todos os envolvidos no projeto. Ela deve ser revisada e atualizada regularmente, para refletir as mudanças e melhorias nos processos. A documentação adequada é um dos pilares da implementação bem-sucedida do MPS.Br, garantindo que os processos sejam compreendidos, aplicados e aprimorados de forma consistente.
+
+\chapter{Conclusão}
+A implementação do Nível G do MPS.Br é um processo desafiador, mas viável, desde que seja abordado com planejamento estratégico e comprometimento. O treinamento adequado, o engajamento da equipe e o uso de ferramentas e métodos apropriados são essenciais para superar os obstáculos comuns. A integração de novos processos com os já existentes deve ser feita de forma cuidadosa, garantindo harmonia e eficiência operacional.
+
+Os benefícios da implementação incluem maior controle sobre os projetos, melhoria na qualidade dos produtos e otimização dos processos organizacionais. Embora os desafios sejam significativos, os ganhos em competitividade e satisfação do cliente tornam o esforço valioso. O sucesso nessa jornada exige um compromisso contínuo com a melhoria e a adaptação, estabelecendo uma base sólida para alcançar níveis mais avançados do MPS.Br \cite{mpsbr_conclusion}.
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{referencias}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+%%%%%MF\phantompart
+%%%%%MF\printindex
+%---------------------------------------------------------------------
+
+\end{document}
